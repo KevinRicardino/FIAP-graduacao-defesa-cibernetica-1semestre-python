@@ -7,11 +7,9 @@
 pontos = int(input("Informe a quantidade de pontos do cliente: "))
 if pontos >= 1000:
     print("O cliente recebe 3gb adicionais!")
+elif pontos > 500:
+    print("O cliente recebe 1,5gb adicionais!")
+elif pontos > 200:
+    print("O cliente recebe 500mb adicionais!")
 else:
-    if pontos > 500:
-        print("O cliente recebe 1,5gb adicionais!")
-    else:
-        if pontos > 200:
-            print("O cliente recebe 500mb adicionais!")
-        else:
-            print("O cliente não recebe dados adicionais!")
+    print("O cliente não recebe dados adicionais!")
