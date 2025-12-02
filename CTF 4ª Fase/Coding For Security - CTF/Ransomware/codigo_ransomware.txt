@@ -1,0 +1,12 @@
+import pyaes
+file_name= "xxx"
+file= open(file_name, "rb")
+file_data= file.read()
+file.close()
+key= b"xxx"
+aes= pyaes.AESModeOfOperationCTR(key)
+decrypt_data= aes.decrypt(file_data)
+new_file_name= "xxx"
+new_file= open(new_file_name, "wb")
+new_file.write(decrypt_data)
+new_file.close()
