@@ -8,7 +8,8 @@ Ao final pontue no formato de flag: FIAP{enigma}
 import os
 
 def revelar_enigma():
-    arquivo_alvo = 'nomes.txt'
+    pasta_script = os.path.dirname(os.path.abspath(__file__))
+    arquivo_alvo = os.path.join(pasta_script, 'nomes.txt')
 
     if not os.path.exists(arquivo_alvo):
         print(f"Erro: O arquivo '{arquivo_alvo}' não foi encontrado.")
@@ -17,38 +18,29 @@ def revelar_enigma():
     enigma = ""
 
     try:
-        # Usando latin-1 para evitar o erro de 'utf-8 codec'
         with open(arquivo_alvo, 'r', encoding='latin-1') as f:
             nomes = f.readlines()
 
-            for nome in nomes:
-                nome = nome.strip()  # Remove espaços e quebras de linha
+        for nome in nomes:
+            nome = nome.strip()
+            if len(nome) == 12:
+                enigma += nome[5]
 
-                # NOVA LÓGICA:
-                # 1. Filtramos apenas nomes com exatamente 12 letras
-                if len(nome) == 12:
-                    # 2. Pegamos a "metade" (o caractere no índice 5 ou 6)
-                    # O índice 5 é a 6ª letra (exatamente a metade matemática de 12)
-                    enigma += nome[5]
-
-        print(f"Tentativa 1 (Nomes com 12 letras, índice 5):")
+        print("Tentativa 1:")
         print(f"FIAP{{{enigma}}}")
 
-        # Caso a lógica acima não forme uma frase, tente esta alternativa:
-        # Às vezes "A metade de 12" significa buscar nomes de tamanho 6 (12/2)
         enigma_alt = ""
         for nome in nomes:
             nome = nome.strip()
             if len(nome) == 6:
-                enigma_alt += nome[0]  # Pega a primeira letra de nomes com 6 letras
+                enigma_alt += nome[0]
 
-        if len(enigma_alt) < 100:  # Só imprime se não for lixo gigante
-            print(f"\nTentativa 2 (Nomes com 6 letras, primeira letra):")
+        if len(enigma_alt) < 100:
+            print("\nTentativa 2:")
             print(f"FIAP{{{enigma_alt}}}")
 
     except Exception as e:
         print(f"Erro: {e}")
-
 
 if __name__ == "__main__":
     revelar_enigma()
