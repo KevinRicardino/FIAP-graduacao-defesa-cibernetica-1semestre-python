@@ -43,3 +43,6 @@ if sequencia_resultante is not None:
     print(f"✅ Sequência de Terceiros Caracteres Extraída de '{nome_do_arquivo}':")
     # A saída será: 3F7CAA3D471688B704B73E9A77B1107F
     print(sequencia_resultante)
+
+print("Converta de '3F7CAA3D471688B704B73E9A77B1107F' md5 para texto e ficará: ")
+print("FIAP{ADMIN123}")
